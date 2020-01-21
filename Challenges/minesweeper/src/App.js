@@ -3,7 +3,7 @@ import Grid from './components/grid';
 import logo from './logo.svg';
 import './App.css';
 
-function App() {
+const App = () => {
   return (
     <div>
       <div className="App">
@@ -12,11 +12,8 @@ function App() {
           <Grid size={10} />
         </header>
       </div>
-      {/* <div className="App">
-        
-      </div> */}
     </div>
   );
-}
+};
 
 export default App;

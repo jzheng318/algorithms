@@ -19,9 +19,11 @@ export function plantBombs(board, numBombs) {
   while (numBombs > 0) {
     let row = Math.floor(Math.random() * (length - 0));
     let col = Math.floor(Math.random() * (length - 0));
-    board[row][col] = '💣';
-    board = countNeighbors(board, row, col, '💣');
-    numBombs--;
+    if (board[row][col] === 0) {
+      board[row][col] = '💣';
+      board = countNeighbors(board, row, col, '💣');
+      numBombs--;
+    }
   }
   return board;
 }
@@ -48,19 +50,47 @@ export function countNeighbors(board, row, col, bomb) {
 }
 
 export function updateGrid(board, row, col, val) {
-  board[row][col] = val;
+  if (status !== 'won') {
+    board[row][col] = val;
+  } else {
+  }
   return board;
 }
 
-export function lost(board) {
-  for (let i = 0; i < board.length; i++) {
-    let row = board[i];
-    for (let j = 0; j < row.length; j++) {
-      row[j] = '☠︎';
+export function status(board, status) {
+  if (status === 'lost') {
+    for (let i = 0; i < board.length; i++) {
+      let row = board[i];
+      for (let j = 0; j < row.length; j++) {
+        row[j] = '☠︎';
+      }
+    }
+  } else {
+    for (let i = 0; i < board.length; i++) {
+      let row = board[i];
+      for (let j = 0; j < row.length; j++) {
+        row[j] = '🥳';
+      }
     }
   }
   console.log(board);
   return board;
+}
+
+export function checkStatus(startBoard, endBoard) {
+  for (let i = 0; i < startBoard.length; i++) {
+    let row = startBoard[i];
+    for (let j = 0; j < row.length; j++) {
+      let startEl = startBoard[i][j];
+      let endEl = endBoard[i][j];
+      if (endEl !== '💣') {
+        if (startEl !== endEl) {
+          return false;
+        }
+      }
+    }
+  }
+  return true;
 }
 
 /* TEST */

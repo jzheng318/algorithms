@@ -40,10 +40,7 @@ export default class Grid extends React.Component {
       });
     } else {
       this.setState({
-        endGrid: plantBombs(
-          this.state.endGrid,
-          Math.floor(this.size * (this.size / 2))
-        ),
+        endGrid: plantBombs(this.state.endGrid, Math.floor(this.size * 5)),
       });
     }
     console.log(this.state);
@@ -97,7 +94,7 @@ export default class Grid extends React.Component {
           <option value="easy">Easy</option>
           <option value="medium">Medium</option>
           <option value="hard">Hard</option>
-          <option value="hard">Hell</option>
+          <option value="hell">Hell</option>
         </select>
         <button onClick={this.startGame}>Start Game</button>
         <button onClick={this.restartGame}>Restart Game</button>

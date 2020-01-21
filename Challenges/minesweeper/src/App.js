@@ -1,6 +1,5 @@
 import React from 'react';
 import Grid from './components/grid';
-import logo from './logo.svg';
 import './App.css';
 
 const App = () => {

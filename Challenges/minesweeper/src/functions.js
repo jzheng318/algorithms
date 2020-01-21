@@ -13,13 +13,13 @@ export function createBoard(size) {
 
 export function plantBombs(board, numBombs) {
   //for difficulty, use difficulty instead of numBombs and have number increase or decrease depending on difficulty
-
+  console.log(numBombs);
   let length = board.length;
 
   while (numBombs > 0) {
     let row = Math.floor(Math.random() * (length - 0));
     let col = Math.floor(Math.random() * (length - 0));
-    if (board[row][col] === 0) {
+    if (board[row][col] !== '💣') {
       board[row][col] = '💣';
       board = countNeighbors(board, row, col, '💣');
       numBombs--;

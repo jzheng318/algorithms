@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  background-color: #48494d;
 }
 
 .App-logo {
@@ -21,11 +22,15 @@
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  /* color: white; */
+  color: white;
 }
 
 .App-link {
   color: #61dafb;
+}
+
+.App-header h1 {
+  margin-bottom: 0px;
 }
 
 @keyframes App-logo-spin {
@@ -37,8 +42,16 @@
   }
 }
 
+button {
+  margin: 10px;
+}
+
+select {
+  margin: 10px;
+}
+
 table {
-  border: 1px solid black;
+  /* border: 1px solid black; */
   border-spacing: 5px;
 }
 
@@ -47,4 +60,5 @@ td {
   width: 50px;
   background-color: lightgray;
   transition: background-color 0.5s ease;
+  color: black;
 }

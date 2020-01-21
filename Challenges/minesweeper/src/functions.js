@@ -13,7 +13,6 @@ export function createBoard(size) {
 
 export function plantBombs(board, numBombs) {
   //for difficulty, use difficulty instead of numBombs and have number increase or decrease depending on difficulty
-  console.log(numBombs);
   let length = board.length;
 
   while (numBombs > 0) {
@@ -47,6 +46,26 @@ export function countNeighbors(board, row, col, bomb) {
   }
   //   console.log(board);
   return board;
+}
+
+export function borders(board, row, col) {
+  console.log(row, col);
+  let startRow = row - 1 >= 0 ? row - 1 : 0;
+  let startCol = col - 1 >= 0 ? col - 1 : 0;
+  let length = board.length;
+  //   debugger;
+  if (startRow < length && startCol < length) {
+    let val = board[startRow][startCol];
+    if (val !== 0 && val !== '💣') {
+      return updateGrid(board, startRow, startCol, val);
+    } else {
+      board = borders(board, startRow, startCol + 1);
+      board = borders(board, startRow + 1, startCol);
+      return board;
+    }
+  } else {
+    return board;
+  }
 }
 
 export function updateGrid(board, row, col, val) {

@@ -9,7 +9,7 @@ const App = () => {
         <header className="App-header">
           <h1>Welcome to Minesweeper</h1>
 
-          <Grid size={10} />
+          <Grid size={5} />
         </header>
       </div>
     </div>

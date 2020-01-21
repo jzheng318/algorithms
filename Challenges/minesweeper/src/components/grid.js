@@ -5,6 +5,7 @@ import {
   updateGrid,
   status,
   checkStatus,
+  borders,
 } from '../functions';
 
 export default class Grid extends React.Component {
@@ -62,6 +63,11 @@ export default class Grid extends React.Component {
       this.setState({
         startGrid: status(this.state.startGrid, 'lost'),
       });
+    } else if (value === 0) {
+      //   console.log(row, col);
+      this.setState({
+        startGrid: borders(this.state.startGrid, row, col),
+      });
     } else {
       this.setState({
         startGrid: updateGrid(this.state.startGrid, row, col, value),
@@ -90,19 +96,21 @@ export default class Grid extends React.Component {
   render() {
     return (
       <div>
-        <select onChange={this.handleDifficulty}>
-          <option value="easy">Easy</option>
-          <option value="medium">Medium</option>
-          <option value="hard">Hard</option>
-          <option value="hell">Hell</option>
-        </select>
-        <button onClick={this.startGame}>Start Game</button>
-        <button onClick={this.restartGame}>Restart Game</button>
-        <select onChange={this.handleSelect}>
-          <option value="mark">Mark</option>
-          <option value="flag">Flag</option>
-        </select>
-        <div id="graph">
+        <div className="options">
+          <select onChange={this.handleDifficulty}>
+            <option value="easy">Easy</option>
+            <option value="medium">Medium</option>
+            <option value="hard">Hard</option>
+            <option value="hell">Hell</option>
+          </select>
+          <button onClick={this.startGame}>Start Game</button>
+          <button onClick={this.restartGame}>Restart Game</button>
+          <select onChange={this.handleSelect}>
+            <option value="mark">Mark</option>
+            <option value="flag">Flag</option>
+          </select>
+        </div>
+        <div className="Grid">
           <table>
             <tbody>
               {this.state.startGrid.map((row, rowIdx) => (

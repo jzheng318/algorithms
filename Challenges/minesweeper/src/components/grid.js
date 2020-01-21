@@ -6,11 +6,13 @@ export default class Grid extends React.Component {
     super(props);
     this.size = this.props.size;
     this.state = {
+      action: 'mark',
       startGrid: createBoard(this.size),
       endGrid: createBoard(this.size),
     };
     this.startGame = this.startGame.bind(this);
     this.restartGame = this.restartGame.bind(this);
+    this.handleSelect = this.handleSelect.bind(this);
     this.updateCell = this.updateCell.bind(this);
   }
 
@@ -18,7 +20,6 @@ export default class Grid extends React.Component {
     this.setState({
       endGrid: plantBombs(this.state.endGrid, Math.floor(this.size * 1.25)),
     });
-    console.log('NEW GAME');
     console.log(this.state);
   }
 
@@ -27,15 +28,13 @@ export default class Grid extends React.Component {
       startGrid: createBoard(this.size),
       endGrid: createBoard(this.size),
     });
-    console.log(this.state);
     this.startGame();
   }
 
   updateCell(row, col) {
-    console.log(`row: ${row}, col index: ${col}`);
-    let value = this.state.endGrid[row][col];
+    let value =
+      this.state.action === 'mark' ? this.state.endGrid[row][col] : '🚩';
     if (value === '💣') {
-      console.log('this is not a number!');
       this.setState({
         startGrid: lost(this.state.startGrid),
       });
@@ -46,11 +45,25 @@ export default class Grid extends React.Component {
     }
   }
 
+  handleSelect(type) {
+    this.setState({
+      action: type,
+    });
+  }
+
   render() {
     return (
       <div id="graph">
         <button onClick={this.startGame}>Start Game</button>
         <button onClick={this.restartGame}>Restart Game</button>
+        <select>
+          <option value="mark" onClick={() => this.handleSelect('mark')}>
+            Mark
+          </option>
+          <option value="flag" onClick={() => this.handleSelect('flag')}>
+            Flag
+          </option>
+        </select>
         <div>
           <table>
             <tbody>

@@ -47,6 +47,22 @@ export function countNeighbors(board, row, col, bomb) {
   return board;
 }
 
+export function updateGrid(board, row, col, val) {
+  board[row][col] = val;
+  return board;
+}
+
+export function lost(board) {
+  for (let i = 0; i < board.length; i++) {
+    let row = board[i];
+    for (let j = 0; j < row.length; j++) {
+      row[j] = '☠︎';
+    }
+  }
+  console.log(board);
+  return board;
+}
+
 /* TEST */
 // const board = createBoard(10);
 // plantBombs(board, 7);
